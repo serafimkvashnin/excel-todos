@@ -99,21 +99,20 @@ const App = () => {
           onDelete={deleteTask}
         />
 
-        <div className="mb-2">
-          <label className="block text-sm mb-1">Export Separator</label>
+        <div className="flex items-center gap-2">
           <input
             className="border p-1 rounded w-full"
+            placeholder="Separator (default: ;)"
             value={separator}
-            onChange={(e) => setSeparator(e.target.value)}
+            onChange={(e) => setSeparator(e.target.value || ';')}
           />
+          <button
+            onClick={handleCopy}
+            className="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600"
+          >
+            {copyStatus ? 'Copied!' : 'Copy'}
+          </button>
         </div>
-
-        <button
-          onClick={handleCopy}
-          className="bg-green-500 text-white px-3 py-2 rounded w-full"
-        >
-          {copyStatus ? '☑️ Tasks copied!' : '📋 Copy Completed Tasks'}
-        </button>
       </div>
     </div>
   );
