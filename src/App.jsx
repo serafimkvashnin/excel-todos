@@ -5,6 +5,7 @@ import TaskList from './components/TaskList';
 
 const App = () => {
   const [tasks, setTasks] = useState([]);
+  const [copyStatus, setCopyStatus] = useState(false);
   const [input, setInput] = useState('');
   const [separator, setSeparator] = useState('\n');
   const [selectedDate, setSelectedDate] = useState(
@@ -30,6 +31,14 @@ const App = () => {
       .insert({ content, completed: false, created_at: selectedDate })
       .select();
     if (data) setTasks((prev) => [...prev, ...data]);
+  };
+
+  const handleCopy = () => {
+    const text = exportCompleted();
+    navigator.clipboard.writeText(text).then(() => {
+      setCopyStatus(true);
+      setTimeout(() => setCopyStatus(false), 2000);
+    });
   };
 
   const handleImport = () => {
@@ -100,10 +109,10 @@ const App = () => {
         </div>
 
         <button
-          onClick={() => navigator.clipboard.writeText(exportCompleted())}
+          onClick={handleCopy}
           className="bg-green-500 text-white px-3 py-2 rounded w-full"
         >
-          📋 Copy Completed Tasks
+          {copyStatus ? '☑️ Tasks copied!' : '📋 Copy Completed Tasks'}
         </button>
       </div>
     </div>
