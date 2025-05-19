@@ -74,16 +74,12 @@ const App = () => {
       <div className="max-w-xl mx-auto bg-white shadow-xl p-6 rounded-xl">
         <h1 className="text-2xl font-bold mb-4">📝 Todo List</h1>
 
-        {/* Date Picker */}
-        <div className="mb-4">
-          <label className="block text-sm mb-1">Select Date</label>
-          <input
-            type="date"
-            className="border p-2 rounded w-full"
-            value={selectedDate}
-            onChange={(e) => setSelectedDate(e.target.value)}
-          />
-        </div>
+        <input
+          type="date"
+          className="border p-2 mb-4 rounded w-full"
+          value={selectedDate}
+          onChange={(e) => setSelectedDate(e.target.value)}
+        />
 
         <TaskInput
           input={input}
