@@ -71,8 +71,8 @@ const App = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 p-4 text-gray-800">
-      <div className="max-w-xl mx-auto bg-white shadow-xl p-6 rounded-xl">
+    <div className="min-h-screen p-4 text-gray-800 bg-white md:bg-gray-100">
+      <div className="max-w-xl mx-auto bg-white md:shadow-xl p-6 rounded-none md:rounded-xl">
         <h1 className="text-2xl font-bold mb-4">📝 Todo List</h1>
 
         <input
