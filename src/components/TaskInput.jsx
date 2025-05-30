@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { ChevronDown, ChevronUp } from 'lucide-react';
+import { DefaultSeparator } from '../constants';
 
 const TaskInput = ({ input, setInput, separator, setSeparator, onImport }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -29,9 +30,9 @@ const TaskInput = ({ input, setInput, separator, setSeparator, onImport }) => {
           <div className="flex items-center gap-2">
             <input
               className="border p-1 rounded w-full"
-              placeholder="Separator (default: ;)"
+              placeholder={`Separator (default: ${DefaultSeparator})`}
               value={separator}
-              onChange={(e) => setSeparator(e.target.value || ';')}
+              onChange={(e) => setSeparator(e.target.value)}
             />
             <button
               onClick={onImport}

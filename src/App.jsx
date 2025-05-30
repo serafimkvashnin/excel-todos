@@ -2,12 +2,13 @@ import { useEffect, useState } from 'react';
 import { supabase } from './utils/supabase';
 import TaskInput from './components/TaskInput';
 import TaskList from './components/TaskList';
+import { DefaultSeparator } from './constants';
 
 const App = () => {
   const [tasks, setTasks] = useState([]);
   const [copyStatus, setCopyStatus] = useState(false);
   const [input, setInput] = useState('');
-  const [separator, setSeparator] = useState('\n');
+  const [separator, setSeparator] = useState(DefaultSeparator);
   const [selectedDate, setSelectedDate] = useState(
     new Date().toISOString().split('T')[0]
   );
@@ -43,7 +44,7 @@ const App = () => {
 
   const handleImport = () => {
     const items = input
-      .split(separator)
+      .split(separator || DefaultSeparator)
       .map((t) => t.trim())
       .filter(Boolean);
     items.forEach((item) => addTask(item));
@@ -66,7 +67,7 @@ const App = () => {
     return tasks
       .filter((t) => t.completed)
       .map((t) => t.content)
-      .join(separator);
+      .join(separator || DefaultSeparator);
   };
 
   return (
@@ -98,9 +99,9 @@ const App = () => {
         <div className="flex items-center gap-2">
           <input
             className="border p-1 rounded w-full"
-            placeholder="Separator (default: ;)"
+            placeholder={`Separator (default: ${DefaultSeparator})`}
             value={separator}
-            onChange={(e) => setSeparator(e.target.value || ';')}
+            onChange={(e) => setSeparator(e.target.value)}
           />
           <button
             onClick={handleCopy}
