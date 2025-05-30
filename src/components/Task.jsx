@@ -12,9 +12,9 @@ const Task = ({ task, onToggleComplete, onDelete }) => {
           type="checkbox"
           checked={task.completed}
           onChange={() => onToggleComplete(task.id, !task.completed)}
-          className="w-5 h-5"
+          className="w-5 h-5 flex-shrink-0"
         />
-        <span>{task.content}</span>
+        <span className="flex-1 break-words">{task.content}</span>
       </div>
 
       <button
