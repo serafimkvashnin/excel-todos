@@ -8,7 +8,7 @@ const App = () => {
   const [tasks, setTasks] = useState([]);
   const [copyStatus, setCopyStatus] = useState(false);
   const [input, setInput] = useState('');
-  const [separator, setSeparator] = useState(DefaultSeparator);
+  const [separator, setSeparator] = useState('');
   const [selectedDate, setSelectedDate] = useState(
     new Date().toISOString().split('T')[0]
   );
