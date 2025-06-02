@@ -70,18 +70,39 @@ const App = () => {
       .join(separator || DefaultSeparator);
   };
 
+  const formatDate = (date) => date.toISOString().split('T')[0];
+
+  const addDays = (days) => {
+    const newDate = new Date(selectedDate);
+    newDate.setDate(newDate.getDate() + days);
+    setSelectedDate(formatDate(newDate));
+  };
+
   return (
     <div className="min-h-screen p-4 text-gray-800 bg-white md:bg-gray-100">
       <div className="max-w-xl mx-auto bg-white md:shadow-xl p-6 rounded-none md:rounded-xl">
         <h1 className="text-2xl font-bold mb-4">📝 Todo List</h1>
 
-        <input
-          type="date"
-          className="border p-2 mb-4 rounded w-full"
-          value={selectedDate}
-          onChange={(e) => setSelectedDate(e.target.value)}
-        />
-
+        <div className="flex items-center gap-2 mb-4">
+          <input
+            type="date"
+            className="border p-1 rounded w-full"
+            value={selectedDate}
+            onChange={(e) => setSelectedDate(e.target.value)}
+          />
+          <button
+            className="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600"
+            onClick={() => addDays(-1)}
+          >
+            Prev
+          </button>
+          <button
+            className="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600"
+            onClick={() => addDays(1)}
+          >
+            Next
+          </button>
+        </div>
         <TaskInput
           input={input}
           setInput={setInput}
